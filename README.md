@@ -8,10 +8,10 @@ Python 3.7 SMS Spam Classifier using Naive Bayes Classifier and TF-IDF Vectorize
 ## Penggunaan
 #### Memprediksi suatu pesan
 `python main.py -m "masukkan pesan anda disini"`
-#### Cetak hasil prediksi terhadap test data dengan panjang pesan sebanyak 100 karakter
-`python main.py -t -l 100`
+#### Cetak hasil prediksi terhadap test data dengan panjang pesan sebanyak 50 karakter (default 100 karakter)
+`python main.py -t -l 50`
 
 ## Sources
-- (Dataset)[http://nlp.yuliadi.pro/dataset]
-- (Stopword Bahasa Indonesia)[https://www.kaggle.com/oswinrh/indonesian-stoplist]
-- (Alay Dictionary)[https://github.com/AdrianAdyatma/Twitter-Sentiment-Analysis/blob/master/references/alay_dict.txt]
+- [Dataset](http://nlp.yuliadi.pro/dataset)
+- [Stopword Bahasa Indonesia](https://www.kaggle.com/oswinrh/indonesian-stoplist)
+- [Alay Dictionary](https://github.com/AdrianAdyatma/Twitter-Sentiment-Analysis/blob/master/references/alay_dict.txt)
