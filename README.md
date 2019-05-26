@@ -1,14 +1,14 @@
 # spam-sms-classifier
-## Python 3.7 SMS Spam Classifier using Naive Bayes Classifier and TF-IDF Vectorizer
+Python 3.7 SMS Spam Classifier using Naive Bayes Classifier and TF-IDF Vectorizer
 
 ## Depedencies
-1. tabulate (Mencetak tabular data pada console) ```pip install tabulate```
-2. PySastrawi (Word Stemmer untuk Bahasa Indonesia) ```pip install PySastrawi```
+1. tabulate (Mencetak tabular data pada console) `pip install tabulate`
+2. PySastrawi (Word Stemmer untuk Bahasa Indonesia) `pip install PySastrawi`
 
 ## Penggunaan
-Memprediksi suatu pesan
+#### Memprediksi suatu pesan
 `python main.py -m "masukkan pesan anda disini"`
-Cetak hasil prediksi terhadap test data dengan panjang pesan sebanyak 100 karakter
+#### Cetak hasil prediksi terhadap test data dengan panjang pesan sebanyak 100 karakter
 `python main.py -t -l 100`
 
 ## Sources
