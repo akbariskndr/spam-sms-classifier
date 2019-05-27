@@ -856,6 +856,7 @@ pertamax:pertama
 pesenan:pesanan
 pesenin:pesankan
 pgang:pegang
+pgn:ingin
 pgi:pergi
 pi:tapi
 pijetin:pijitkan
