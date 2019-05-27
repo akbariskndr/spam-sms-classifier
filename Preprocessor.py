@@ -9,7 +9,7 @@ class Preprocessor:
         self.stopwords = self.initialize_stopwords()
         self.formalization_rules = self.initialize_formalization_rules()
 
-    def remove_comma(infile, outfile):
+    def remove_comma(self, infile, outfile):
         with open(infile, encoding='utf-8') as f:
             reader = csv.reader(f, delimiter=',', quotechar='|')
             with open(outfile, mode='w', encoding='utf-8', newline='') as f_new:
