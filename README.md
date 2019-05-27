@@ -10,6 +10,8 @@ Python 3.7 SMS Spam Classifier using Naive Bayes Classifier and TF-IDF Vectorize
 `python main.py -m "masukkan pesan anda disini"`
 #### Cetak hasil prediksi terhadap test data dengan panjang pesan sebanyak 50 karakter (default 100 karakter)
 `python main.py -t -l 50`
+#### Menyimpan file csv dari fitur kata dan data terpreproses dari dataset training
+`python main.py -p`
 
 ## Sources
 - [Dataset](http://nlp.yuliadi.pro/dataset)
