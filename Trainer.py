@@ -156,7 +156,7 @@ class Trainer:
             writer.writerow([
                 "Kata", "Jumlah Kemunculan di Dataset Spam",
                 "Jumlah Kemunculan di Dataset Ham", "Jumlah Dokumen Spam",
-                "Jumlah Dokumen Ham", "Probabilitas Spam", "Probabilitas Ham"
+                "Jumlah Dokumen Ham", "Probabilitas Spam", "Probabilitas Ham",
                 "TF-IDF Spam", "TF-IDF Ham"
             ])
             for word in self.word_data.keys():
