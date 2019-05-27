@@ -41,7 +41,6 @@ class Classifier:
                 else:
                     self.test_data += [[text, 0]]
 
-
     def classify(self, message):
         res_prob_spam = 1
         res_prob_ham = 1
