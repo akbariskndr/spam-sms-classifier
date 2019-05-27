@@ -157,6 +157,7 @@ class Trainer:
                 "Kata", "Jumlah Kemunculan di Dataset Spam",
                 "Jumlah Kemunculan di Dataset Ham", "Jumlah Dokumen Spam",
                 "Jumlah Dokumen Ham", "Probabilitas Spam", "Probabilitas Ham"
+                "TF-IDF Spam", "TF-IDF Ham"
             ])
             for word in self.word_data.keys():
                 spam_occurence = self.word_data[word]["occurence"]["spam"]
@@ -167,4 +168,13 @@ class Trainer:
 
                 prob_spam = self.word_data[word]["prob"]["spam"]
                 prob_ham = self.word_data[word]["prob"]["ham"]
-                writer.writerow([word, spam_occurence, ham_occurence, appear_in_spam_docs, appear_in_ham_docs, prob_spam, prob_ham])
+
+                tfidf_spam = self.word_data[word]["tfidf"]["spam"]
+                tfidf_ham = self.word_data[word]["tfidf"]["ham"]
+                writer.writerow([
+                    word, spam_occurence,
+                    ham_occurence, appear_in_spam_docs,
+                    appear_in_ham_docs, prob_spam, prob_ham,
+                    tfidf_spam,
+                    tfidf_ham
+                ])
