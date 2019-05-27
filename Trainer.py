@@ -25,21 +25,26 @@ class Trainer:
         self.run()
 
     def run(self):
+        for row in self.training_data:
+            message = self.preprocess.run(row[0])
+            label = int(row[-1])
+
+            self.count_occurence(message, label)
+
+            message = ' '.join(message)
+
+        self.init_tf_idf()
+        self.init_probability()
+
+    def save_preprocessed_data(self):
         with open('preprocessed.csv', 'w', encoding='utf-8', newline='') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"')
             for row in self.training_data:
                 message = self.preprocess.run(row[0])
                 label = int(row[-1])
 
-                self.count_occurence(message, label)
-
                 message = ' '.join(message)
                 writer.writerow([message, label])
-
-        self.init_tf_idf()
-        self.init_probability()
-
-        self.save_words_to_csv('word_features.csv')
 
     def define_word_data(self, word, label):
         self.word_data[word] = {
