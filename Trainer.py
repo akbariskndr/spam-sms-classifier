@@ -25,22 +25,27 @@ class Trainer:
         self.run()
 
     def run(self):
-        for row in self.training_data:
-            message = self.preprocess.run(row[0])
-            label = int(row[-1])
+        with open('preprocessed.csv', 'w', encoding='utf-8', newline='') as f:
+            writer = csv.writer(f, delimiter=',', quotechar='"')
+            for row in self.training_data:
+                message = self.preprocess.run(row[0])
+                label = int(row[-1])
 
-            self.count_occurence(message, label)
+                self.count_occurence(message, label)
+
+                message = ' '.join(message)
+                writer.writerow([message, label])
 
         self.init_tf_idf()
         self.init_probability()
 
         self.save_words_to_csv('word_features.csv')
 
-    def define_word_data(self, word):
+    def define_word_data(self, word, label):
         self.word_data[word] = {
             "occurence": {
-                "spam": 0,
-                "ham": 0,
+                "spam": 1 if label is 1 else 0,
+                "ham": 1 if label is 0 else 1,
             },
             "appear_in": {
                 "spam": 0,
@@ -59,7 +64,7 @@ class Trainer:
     def count_occurence(self, message, label):
         word_list = []
         for word in message:
-            if word in self.word_data:
+            if word in self.word_data.keys():
                 if label is 1:
                     self.word_data[word]["occurence"]["spam"] += 1
                     self.spam_words_count += 1
@@ -67,20 +72,20 @@ class Trainer:
                     self.word_data[word]["occurence"]["ham"] += 1
                     self.ham_words_count += 1
             else:
-                self.define_word_data(word)
+                self.define_word_data(word, label)
 
             if word not in word_list:
                 word_list += [word]
 
-            for word in word_list:
-                if label is 1:
-                    self.word_data[word]["appear_in"]["spam"] += 1
-                    if word not in self.spam_word_list:
-                        self.spam_word_list + [word]
-                else:
-                    self.word_data[word]["appear_in"]["ham"] += 1
-                    if word not in self.ham_word_list:
-                        self.ham_word_list + [word]
+        for word in word_list:
+            if label is 1:
+                self.word_data[word]["appear_in"]["spam"] += 1
+                if word not in self.spam_word_list:
+                    self.spam_word_list + [word]
+            else:
+                self.word_data[word]["appear_in"]["ham"] += 1
+                if word not in self.ham_word_list:
+                    self.ham_word_list + [word]
         
         if label is 1:
             self.spam_dataset += 1
