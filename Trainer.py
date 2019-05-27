@@ -1,4 +1,5 @@
 import math
+import csv
 
 class Trainer:
     def __init__(self, training_data, preprocessor):
@@ -29,8 +30,11 @@ class Trainer:
             label = int(row[-1])
 
             self.count_occurence(message, label)
+
         self.init_tf_idf()
         self.init_probability()
+
+        self.save_words_to_csv('word_features.csv')
 
     def define_word_data(self, word):
         self.word_data[word] = {
@@ -135,3 +139,22 @@ class Trainer:
             prob_spam, prob_ham = self.calc_probability(0, 0)
 
         return (prob_spam, prob_ham)
+
+    def save_words_to_csv(self, filename):
+        with open(filename, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.writer(f, delimiter=',', quotechar='"')
+            writer.writerow([
+                "Kata", "Jumlah Kemunculan di Dataset Spam",
+                "Jumlah Kemunculan di Dataset Ham", "Jumlah Dokumen Spam",
+                "Jumlah Dokumen Ham", "Probabilitas Spam", "Probabilitas Ham"
+            ])
+            for word in self.word_data.keys():
+                spam_occurence = self.word_data[word]["occurence"]["spam"]
+                ham_occurence = self.word_data[word]["occurence"]["ham"]
+
+                appear_in_spam_docs = self.word_data[word]["appear_in"]["spam"]
+                appear_in_ham_docs = self.word_data[word]["appear_in"]["ham"]
+
+                prob_spam = self.word_data[word]["prob"]["spam"]
+                prob_ham = self.word_data[word]["prob"]["ham"]
+                writer.writerow([word, spam_occurence, ham_occurence, appear_in_spam_docs, appear_in_ham_docs, prob_spam, prob_ham])
